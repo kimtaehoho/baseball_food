@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        label, input, button {
+            margin: 8px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+  <center>
+    <br><br><hr>
+    <form action="http://localhost:8000/" method="GET">
+        <h2>회원가입</h2>
+        <label for="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID  :</label>
+        <input type="text" id="id">
+        <br>
+        <label for="usernamecheck">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;재입력  :</label>
+        <input type="text" id="idcheck">
+        <br><br><br>
+
+
+        <label for="pw">Password:</label>
+        <input type="password" id="pw">
+        <br>
+        <label for="pwcheck">재입력 :</label>
+        <input type="password" id="pwcheck">
+        <br>
+
+
+    </form>
+    <button onclick="redirectToPage()">확인</button>
+
+    <script>
+    function redirectToPage() {
+      window.location.href = "login.html"
+    }
+    </script>
+
+  <hr>
+  <footer>
+    <p> &copy; 내용추가</p>
+  </footer>
+ </center>
+</body>
+
+</html>

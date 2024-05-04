@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        label, input, button {
+            margin: 8px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+  <center>
+    <br><br><hr>
+        <h2>글 내용</h2>
+
+  <button onclick="redirectToPage_add()">수정하기</button>
+  <button onclick="redirectToPage_mainpage()">삭제하기</button>
+  <pre> 수정 누르면 글 쓰는페이지로, 삭제 누르면 데이터에서 삭제하고 메인페이지로</pre>
+  
+  <script>
+    function redirectToPage_add() {
+    window.location.href = "createdata.html";
+    }
+
+    function redirectToPage_mainpage() {
+    window.location.href = "mainpage.html";
+    }
+  </script>
+  
+
+    
+
+
+  <hr>
+  <footer>
+    <p> &copy; 내용추가</p>
+  </footer>
+ </center>
+</body>
+
+</html>

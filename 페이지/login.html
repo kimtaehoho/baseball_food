@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        label, input, button {
+            margin: 8px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+  <center>
+    <br><br><hr>
+    <form action="http://localhost:8000/" method="POST">
+        <h2>Login</h2>
+        <label for="username">&nbsp&nbsp&nbsp&nbsp&nbsp ID :</label>
+        <input type="text" name="id">
+        <br>
+        <label for="pw">Password:</label>
+        <input type="password" name="pw">
+        <br>
+        <button type=submit>로그인</button>
+    </form>
+    <button onclick="redirectToPage()">회원가입</button>
+
+    <script>
+    function redirectToPage() {
+      window.location.href = "Register.html";
+    }
+    </script>
+
+  <hr>
+  <footer>
+    <p> &copy; 내용추가</p>
+  </footer>
+ </center>
+</body>
+
+</html>

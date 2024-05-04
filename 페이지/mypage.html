@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        label, input, button {
+            margin: 8px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+  <center>
+    <br><br><hr>
+    <form action="http://localhost:8000/" method="GET">
+        <h2>마이페이지</h2>
+        <h3> 내가 쓴 글</h3> <br><br><br><br><br><br>
+
+        <h3> 내가 추천한 글</h3> <br><br>
+
+
+    </form>
+    <button onclick="redirectToPage()">확인</button>
+
+    <script>
+    function redirectToPage() {
+      window.location.href = "login.html"
+    }
+    </script>
+
+  <hr>
+  <footer>
+    <p> &copy; 내용추가</p>
+  </footer>
+ </center>
+</body>
+
+</html>

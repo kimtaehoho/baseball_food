@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+      .category {
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .subcategory {
+        display: none;
+        padding-left: 20px;
+      }
+      .subcategory.active {
+        display: block;
+      }
+    </style>
+    </head>
+    <body>
+    <hr><br><br><br><br><br><br><br><br><br>
+    
+    <button onclick="redirectToPage_mypage()">마이페이지</button>
+    <button onclick="redirectToPage_add()">추가하기</button>
+    <center>
+    <div class="category" onclick="toggleSubcategory('category1')">카테고리 1</div>
+    <div class="subcategory" id="category1">
+      <div onclick="redirectToPage()">서브카테고리 1-1 (누르면상세페이지이동) </div>
+      <div>서브카테고리 1-2</div>
+    </div>
+    
+    <div class="category" onclick="toggleSubcategory('category2')">카테고리 2</div>
+    <div class="subcategory" id="category2">
+      <div>서브카테고리 2-1</div>
+      <div>서브카테고리 2-2</div>
+    </div>
+    </center>
+    <br><br><br><br><br><br><br><br><br><br>
+    <script>
+
+
+      function toggleSubcategory(id) {
+        var subcategory = document.getElementById(id);
+        subcategory.classList.toggle("active");
+      }
+
+      function redirectToPage() {
+      window.location.href = "detaildata.html";
+      }
+
+      function redirectToPage_mypage() {
+      window.location.href = "mypage.html";
+      }
+
+      function redirectToPage_add() {
+      window.location.href = "createdata.html";
+      }
+    </script>
+
+  <hr><br><br><br><br><br><br><br><br><br><br><br>
+  <footer>
+    <p> &copy; 하단</p>
+  </footer>
+
+
+</body>
+
+</html>
