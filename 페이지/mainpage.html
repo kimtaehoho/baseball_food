@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-      .category {
-        cursor: pointer;
-        font-weight: bold;
-      }
-      .subcategory {
-        display: none;
-        padding-left: 20px;
-      }
-      .subcategory.active {
-        display: block;
-      }
-    </style>
-    </head>
-    <body>
-    <hr><br><br><br><br><br><br><br><br><br>
-    
-    <button onclick="redirectToPage_mypage()">마이페이지</button>
-    <button onclick="redirectToPage_add()">추가하기</button>
-    <center>
-    <div class="category" onclick="toggleSubcategory('category1')">카테고리 1</div>
-    <div class="subcategory" id="category1">
-      <div onclick="redirectToPage()">서브카테고리 1-1 (누르면상세페이지이동) </div>
-      <div>서브카테고리 1-2</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='mainpage.css') }}"
+    />
+    <style></style>
+  </head>
+  <body>
+    <nav class="navigation">
+      <div>LOGO</div>
+      <button onclick="redirectToPage_mypage()">마이페이지</button>
+    </nav>
+
+    <div class="wrapper">
+      <div class="contents">
+        <div class="place-title">
+          <h1 class="place-tex">야구장</h1>
+          <h1 class="food-text">먹거리</h1>
+        </div>
+
+        <nav class="place-navigation">
+          <ul class="place-menu">
+            <li><a>전체</a></li>
+            <li><a href="/jamsil">잠실</a></li>
+            <li><a>고척</a></li>
+            <li><a>문학</a></li>
+            <li><a>수원</a></li>
+            <li><a>대전</a></li>
+            <li><a>광주</a></li>
+            <li><a>대구</a></li>
+            <li><a>사직</a></li>
+            <li><a>창원</a></li>
+          </ul>
+          <ul>
+            <button onclick="redirectToPage_add()">추가하기</button>
+          </ul>
+        </nav>
+
+        <div class="restaurant-cards">
+          {% for posts in post %}
+          <div class="restaurant">
+            <div class="photo"></div>
+            <div class="info">
+              <div>{{posts.location}} • {{posts.place}}</div>
+              <div>{{posts.title}}</div>
+              <div>{{posts.main_dish}}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <br />
+      </div>
     </div>
-    
-    <div class="category" onclick="toggleSubcategory('category2')">카테고리 2</div>
-    <div class="subcategory" id="category2">
-      <div>서브카테고리 2-1</div>
-      <div>서브카테고리 2-2</div>
-    </div>
-    </center>
-    <br><br><br><br><br><br><br><br><br><br>
-    <script>
 
+    <script src="{{ url_for('static', filename='mainpage.js') }}"></script>
 
-      function toggleSubcategory(id) {
-        var subcategory = document.getElementById(id);
-        subcategory.classList.toggle("active");
-      }
+    <hr />
 
-      function redirectToPage() {
-      window.location.href = "detaildata.html";
-      }
-
-      function redirectToPage_mypage() {
-      window.location.href = "mypage.html";
-      }
-
-      function redirectToPage_add() {
-      window.location.href = "createdata.html";
-      }
-    </script>
-
-  <hr><br><br><br><br><br><br><br><br><br><br><br>
-  <footer>
-    <p> &copy; 하단</p>
-  </footer>
-
-
-</body>
-
+    <footer>
+      <p>&copy; 하단</p>
+    </footer>
+  </body>
 </html>
