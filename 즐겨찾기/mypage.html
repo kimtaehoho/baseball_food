@@ -1,107 +1,47 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="ko">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>마이페이지</title>-->
-<!--    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
-
-<!--    <script>-->
-<!--        document.addEventListener("DOMContentLoaded", function() {-->
-<!--            fetch("/mypage")-->
-<!--                .then(response => response.json())-->
-<!--                .then(data => {-->
-<!--                    if (data.success) {-->
-<!--                        displayPosts(data.my_posts, data.liked_posts);-->
-<!--                    } else {-->
-<!--                        alert("데이터를 가져오는 데 실패했습니다.");-->
-<!--                    }-->
-<!--                });-->
-<!--        });-->
-
-<!--        function displayPosts(myPosts, likedPosts) {-->
-<!--            const myPostsDiv = document.getElementById("my-posts");-->
-<!--            myPosts.forEach(post => {-->
-<!--                const postDiv = document.createElement("div");-->
-<!--                postDiv.innerHTML = `<h3>${post.title}</h3> #<p>${post.content}</p>-->
-<!--                    <button onclick="editPost(${post.post_id})">수정</button>-->
-<!--                    <button onclick="deletePost(${post.post_id})">삭제</button>`;-->
-<!--                myPostsDiv.appendChild(postDiv);-->
-<!--            });-->
-
-<!--            const likedPostsDiv = document.getElementById("liked-posts");-->
-<!--            likedPosts.forEach(post => {-->
-<!--                const postDiv = document.createElement("div");-->
-<!--                postDiv.innerHTML = `<h3>${post.title}</h3> #<p>${post.content}</p>`;-->
-<!--                likedPostsDiv.appendChild(postDiv);-->
-<!--            });-->
-<!--        }-->
-
-<!--        function editPost(postId) {-->
-<!--            const newTitle = prompt("새 제목:");-->
-<!--            #const newContent = prompt("새 내용:");-->
-<!--            fetch(`/edit_post/${postId}`, {-->
-<!--                method: "POST",-->
-<!--                headers: {-->
-<!--                    "Content-Type": "application/json"-->
-<!--                },-->
-<!--                body: JSON.stringify({ title: newTitle })-->
-<!--                #body: JSON.stringify({ title: newTitle, content: newContent })-->
-<!--            }).then(response => response.json())-->
-<!--              .then(data => {-->
-<!--                  if (data.success) {-->
-<!--                      location.reload();-->
-<!--                  } else {-->
-<!--                      alert("글 수정에 실패했습니다.");-->
-<!--                  }-->
-<!--              });-->
-<!--        }-->
-
-<!--        function deletePost(postId) {-->
-<!--            fetch(`/delete_post/${postId}`, {-->
-<!--                method: "POST"-->
-<!--            }).then(response => response.json())-->
-<!--              .then(data => {-->
-<!--                  if (data.success) {-->
-<!--                      location.reload();-->
-<!--                  } else {-->
-<!--                      alert("글 삭제에 실패했습니다.");-->
-<!--                  }-->
-<!--              });-->
-<!--        }-->
-<!--    </script>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>마이페이지</h1>-->
-<!--    <div>-->
-<!--        <h2>내가 작성한 글</h2>-->
-<!--        <div id="my-posts"></div>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <h2>내가 좋아요 누른 글</h2>-->
-<!--        <div id="liked-posts"></div>-->
-<!--    </div>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+    <style>
+        .tab {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+        }
+        .tab.active {
+            background-color: #ccc;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .post-section {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>마이페이지</h1>
-    <div>
-        <h2>내가 작성한 글</h2>
-        <div id="my-posts"></div>
+    <div class="tabs">
+        <div class="tab" onclick="showTab('all')">전체</div>
+        <div class="tab" onclick="showTab('잠실')">잠실</div>
+        <div class="tab" onclick="showTab('고척')">고척</div>
+        <div class="tab" onclick="showTab('문학')">문학</div>
+        <div class="tab" onclick="showTab('수원')">수원</div>
+        <div class="tab" onclick="showTab('대전')">대전</div>
+        <div class="tab" onclick="showTab('광주')">광주</div>
+        <div class="tab" onclick="showTab('대구')">대구</div>
+        <div class="tab" onclick="showTab('사직')">사직</div>
+        <div class="tab" onclick="showTab('창원')">창원</div>
     </div>
-    <div>
-        <h2>내가 좋아요 누른 글</h2>
-        <div id="liked-posts"></div>
-    </div>
+    <div id="posts-container"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -117,49 +57,70 @@
         });
 
         function displayPosts(myPosts, likedPosts) {
-            const myPostsDiv = document.getElementById("my-posts");
-            const likedPostsDiv = document.getElementById("liked-posts");
+            const locations = ['all', '잠실', '고척', '문학', '수원', '대전', '광주', '대구', '사직', '창원'];
+            const postsContainer = document.getElementById("posts-container");
 
-            myPosts.forEach(post => {
-                const postDiv = document.createElement("div");
-                postDiv.innerHTML = `
-                    <div class="post">
-                        <h3>${post.title}</h3>
-                        <p>${post.location}, ${post.place}, ${post.main_dish}</p>
-                        <button onclick="editPost(${post.post_id})">수정</button>
-                        <button onclick="deletePost(${post.post_id})">삭제</button>
-                    </div>`;
-                myPostsDiv.appendChild(postDiv);
+            locations.forEach(location => {
+                const postContent = document.createElement("div");
+                postContent.className = `tab-content ${location}`;
+
+                const myPostsSection = document.createElement("div");
+                myPostsSection.className = "post-section";
+                myPostsSection.innerHTML = "<h2>내가 작성한 글</h2>";
+
+                myPosts.filter(post => location === 'all' || post.location === location)
+                    .forEach(post => {
+                        const postDiv = document.createElement("div");
+                        postDiv.innerHTML = `
+                            <div class="post">
+                                <h3>${post.title}</h3>
+                                <p>${post.location}, ${post.place}, ${post.main_dish}</p>
+                                <p>${post.content}</p>
+                                <button onclick="location.href='/edit_post/${post.post_id}'">수정</button>
+                                <button onclick="deletePost(${post.post_id})">삭제</button>
+                            </div>`;
+                        myPostsSection.appendChild(postDiv);
+                    });
+
+                const likedPostsSection = document.createElement("div");
+                likedPostsSection.className = "post-section";
+                likedPostsSection.innerHTML = "<h2>내가 좋아요 누른 글</h2>";
+
+                likedPosts.filter(post => location === 'all' || post.location === location)
+                    .forEach(post => {
+                        const postDiv = document.createElement("div");
+                        postDiv.innerHTML = `
+                            <div class="post">
+                                <h3>${post.title}</h3>
+                                <p>${post.location}, ${post.place}, ${post.main_dish}</p>
+                                <p>${post.content}</p>
+                            </div>`;
+                        likedPostsSection.appendChild(postDiv);
+                    });
+
+                postContent.appendChild(myPostsSection);
+                postContent.appendChild(likedPostsSection);
+                postsContainer.appendChild(postContent);
             });
 
-            likedPosts.forEach(post => {
-                const postDiv = document.createElement("div");
-                postDiv.innerHTML = `
-                    <div class="post">
-                        <h3>${post.title}</h3>
-                        <p>${post.location}, ${post.place}, ${post.main_dish}</p>
-                    </div>`;
-                likedPostsDiv.appendChild(postDiv);
-            });
+            showTab('all');
         }
 
-        function editPost(postId) {
-            const newTitle = prompt("새 제목:");
-            if (newTitle !== null) {
-                fetch(`/edit_post/${postId}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ title: newTitle })
-                }).then(response => response.json())
-                  .then(data => {
-                      if (data.success) {
-                          location.reload();
-                      } else {
-                          alert("글 수정에 실패했습니다.");
-                      }
-                  });
+        function showTab(tabName) {
+            const allTabs = document.querySelectorAll(".tab-content");
+            allTabs.forEach(tab => tab.classList.remove("active"));
+
+            const selectedTab = document.querySelector(`.${tabName}`);
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            const allTabButtons = document.querySelectorAll(".tab");
+            allTabButtons.forEach(button => button.classList.remove("active"));
+
+            const activeButton = document.querySelector(`.tab[onclick="showTab('${tabName}')"]`);
+            if (activeButton) {
+                activeButton.classList.add("active");
             }
         }
 
@@ -170,6 +131,7 @@
                 }).then(response => response.json())
                   .then(data => {
                       if (data.success) {
+                          alert("글이 성공적으로 삭제되었습니다.");
                           location.reload();
                       } else {
                           alert("글 삭제에 실패했습니다.");
