@@ -14,7 +14,7 @@ class User(Base):
 
     user_id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(50), nullable=False)
-    password = Column(String(50), nullable=False)
+    password = Column(String(1000), nullable=False)
     email = Column(String(50), nullable=False)
     like_post = Column(JSON, default=[])
 
