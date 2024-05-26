@@ -78,16 +78,3 @@ document.getElementById('post-form').addEventListener('submit', function(event) 
 });
 
 
-document.getElementById('myform').addEventListener('submit', function(event) {
-    var titleValue = document.getElementsByName('title')[0].value;
-    var placeValue = document.getElementsByName('place')[0].value;
-    var mainDishValue = document.getElementsByName('main_dish')[0].value;
-    var contentValue = document.getElementsByName('content')[0].value;
-    var fileInput = document.getElementById('fileinput');
-
-    if (titleValue === '' || placeValue === '' || mainDishValue === '' || contentValue === '' || fileInput.files.length === 0) {
-        alert('모든 입력란을 채워주세요!');
-        event.preventDefault(); 
-    }
-});
-
