@@ -1,0 +1,176 @@
+#btn1 + .radio-btn-label {
+    background-image: url('/static/logo/LG.png');
+}
+
+#btn2 + .radio-btn-label {
+    background-image: url('/static/logo/KT.png');
+}
+
+#btn3 + .radio-btn-label {
+    background-image: url('/static/logo/SK.png');
+}
+
+#btn4 + .radio-btn-label {
+    background-image: url('/static/logo/NC.png');
+}
+
+#btn5 + .radio-btn-label {
+    background-image: url('/static/logo/OB.png');
+}
+
+#btn6 + .radio-btn-label {
+    background-image: url('/static/logo/HT.png');
+}
+
+#btn7 + .radio-btn-label {
+    background-image: url('/static/logo/LT.png');
+}
+
+#btn8 + .radio-btn-label {
+    background-image: url('/static/logo/SS.png');
+}
+
+#btn9 + .radio-btn-label {
+    background-image: url('/static/logo/HH.png');
+}
+
+#btn10 + .radio-btn-label {
+    background-image: url('/static/logo/WO.png');
+}
+
+
+* {
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight:200;
+}
+
+body {
+    margin: 0;
+    background-color:  #c0c0c0;;
+  }
+
+
+label, input, button {
+    margin: 8px;
+}
+
+input{
+    width: 600px;
+}
+
+#map{
+    border: 2px solid rgb(129, 129, 131);
+    width: 500px;
+    height: 300px;
+    margin-left:1px;
+}
+
+#maps-container {
+    float:left;
+    margin-left: 150px;
+;
+}
+
+#fileselect{
+    margin-left:200px;
+    display: flex;
+    width: 400px;
+    height: 60px;
+}
+
+/* 1라디오 버튼 스타일 */
+.radio-btn-container {
+    border: 2px solid rgb(129, 129, 131);
+    width:75%;
+    height:110px;
+    flex-wrap: wrap;
+}
+
+.radio-btn-label {
+    display: inline-block;
+    width: 70px; /* 원하는 이미지 크기 설정 */
+    height: 60px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 10px;
+    transition: border 0.3s;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.radio-btn-label::before {
+    content: attr(data-text);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #000;
+}
+
+.radio-btn-label.selected {
+    border: 2px solid rgb(95, 95, 95);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+
+#Title , #main_dish , #Place, #content{
+    font-size: 24px;
+
+}
+#finalbtn{
+    padding: 10px 16px;
+  background-color: #7a7a7a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-left: 700px;
+}
+
+input[type="text"] {
+    border-radius: 8px; 
+}
+
+
+textarea[name = "content"]{
+    display : flex;
+    height : 150px;
+    width  : 70%;
+    border-radius: 10px;
+
+}
+
+#full-container{
+    background-color: white;
+    border-radius: 8px; 
+    width:70%;
+    height: 950px;
+}
+
+#inputcon{
+    width:50%;
+    display: flex;
+    margin-right:200px;
+}
+p {
+    margin-right:600px;
+}
+
+
+h1{
+    margin-left:16px;
+    font-size:24px;
+}
+
+#movebtn{
+    float:right;
+    margin-right: 150px;
+    border-radius: 8px;
+    padding: 10px 16px;
+}

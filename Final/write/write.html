@@ -1,0 +1,108 @@
+
+<!-- AIzaSyAd68qmdkWcsQRBJU6douBtGWva2O_33LI -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="{{ url_for('static', filename='write.css') }}">
+	<script src="{{ url_for('static', filename='write.js') }}"></script>
+	<script src="https://maps.google.com/maps/api/js?key=AIzaSyAd68qmdkWcsQRBJU6douBtGWva2O_33LI"></script>
+</head>
+
+<body>
+	<div id="start">
+		<span>
+		<h1>LOGO</h1>
+		<button type="button" id="movebtn" onclick="window.location.href = 'mypage.html'">마이페이지</button>
+		</span>
+	</div>
+	<br><br><br>
+	<center>
+		<div id="full-container">
+			<form action="/post" method="POST" enctype="multipart/form-data" id="myform">
+			<br>
+			<div class="radio-btn-container">
+		
+				<input type="radio" id="btn1" name="mapOptions" value="서울종합운동장 잠실야구장
+				">
+				<label class="radio-btn-label" for="btn1" data-text="LG"></label>
+				
+				<input type="radio" id="btn2" name="mapOptions" value="수원KT위즈파크
+				">
+				<label class="radio-btn-label" for="btn2" data-text="KT"></label>
+				
+				<input type="radio" id="btn3" name="mapOptions" value="인천 SSG 랜더스필드
+				">
+				<label class="radio-btn-label" for="btn3" data-text="SSG"></label>
+				
+				<input type="radio" id="btn4" name="mapOptions" value="창원 NC파크
+				">
+				<label class="radio-btn-label" for="btn4" data-text="NC"></label>
+				
+				<input type="radio" id="btn5" name="mapOptions" value="서울종합운동장 잠실야구장
+				">
+				<label class="radio-btn-label" for="btn5" data-text="Doosan"></label>
+				
+				<input type="radio" id="btn6" name="mapOptions" value="광주기아챔피언스필드">
+				<label class="radio-btn-label" for="btn6" data-text="KIA"></label>
+				
+				<input type="radio" id="btn7" name="mapOptions" value="사직야구장">
+				<label class="radio-btn-label" for="btn7" data-text="LOTTE"></label>
+				
+				<input type="radio" id="btn8" name="mapOptions" value="대구삼성라이온즈파크">
+				<label class="radio-btn-label" for="btn8" data-text="Samsung"></label>
+				
+				<input type="radio" id="btn9" name="mapOptions" value="한화생명이글스파크">
+				<label class="radio-btn-label" for="btn9" data-text="Hanwha"></label>
+				
+				<input type="radio" id="btn10" name="mapOptions" value="고척스카이돔">
+				<label class="radio-btn-label" for="btn10" data-text="Kiwoom"></label>
+			</div>
+			<br>
+
+			<div id = maps-container>
+				<div id="map" style="width: 400px; height: 400px;"></div>
+			</div>
+
+
+			<div id = "inputcon">
+				<label id = "Title">Title 
+					<input type="text" name="title" placeholder="제목을 입력하세요" maxlength="50">
+				</label>
+			</div>
+
+
+			<div id = "inputcon">
+				<label id = "Place">Place
+					<input type="text" name="place" maxlength="50" placeholder=" 장소를 적어주세요. ex_F출구 2층">
+				</label>
+			</div>
+
+			<div id = "inputcon">
+				<label id = "main_dish">Main_dish
+					<input type="text" name="main_dish" maxlength="50" placeholder="메뉴를 적어주세요. ex_불고기버거">
+				</label>
+			</div>
+			<br><br><br>
+	
+			<div id = "fileselect">
+			<input type="file" accept="image/jpeg, image/png" name="file" id="fileinput">
+			</div>
+			<p id ="content">Content</p>
+			<textarea name="content" maxlength="500" placeholder="내용을 입력하세요"></textarea><br>
+
+
+			<button type="submit" id = "finalbtn">작성</button>
+			</form>
+
+		</center>
+		</div>
+
+
+</body>
+</html>
+
+
