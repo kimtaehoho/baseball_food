@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS baseball_db;
+CREATE DATABASE baseball_db default CHARACTER SET UTF8MB4;
+USE baseball_db;
+
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(80) NOT NULL UNIQUE,
+    password VARCHAR(200) NOT NULL
+);
