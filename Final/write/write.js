@@ -37,17 +37,17 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-const radioContainer = document.querySelector('.radio-btn-container');
-const radioButtons = radioContainer.querySelectorAll('.radio-btn-label');
-radioButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        radioButtons.forEach(btn => {
-            btn.classList.remove('selected');
+document.addEventListener('DOMContentLoaded', function() {
+    const radioContainer = document.querySelector('.radio-btn-container');
+    const radioButtons = radioContainer.querySelectorAll('.radio-btn-label');
+    radioButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            radioButtons.forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            button.classList.add('selected');
         });
-        button.classList.add('selected');
     });
-});
-
 
 var selectedValue = null;
 document.querySelectorAll('input[name="mapOptions"]').forEach(function(radio) {
