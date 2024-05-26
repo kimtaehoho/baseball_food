@@ -32,7 +32,7 @@ class Post(Base):
     main_dish = Column(String(250))
     content = Column(String(1000))
     like_count = Column(Integer, default=0)
-    image_exist = Column(Boolean, default = False)
+    image_exist = Column(Integer, default=0)
 
 
 engine = create_engine('mysql+pymysql://root:root@localhost/baseball_db')
