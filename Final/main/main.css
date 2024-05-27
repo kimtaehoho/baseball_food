@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c0c0c0;
+  padding: 16px 60px;
+}
+
+button {
+  padding: 10px 16px;
+  background-color: #7a7a7a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 54px;
+}
+
+ul {
+  padding: 0px;
+  gap: 8px 8px;
+}
+
+a {
+  text-decoration: none;
+  color: #389d74;
+}
+
+input {
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-color: white;
+  border: none;
+  margin-top: 8px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.contents {
+  width: 73.6%;
+  margin: 70px 0px;
+}
+
+.place-title {
+  display: flex;
+  font-size: 24px;
+}
+
+.food-text {
+  color: #389d74;
+  margin-left: 8px;
+}
+
+.place-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.place-menu {
+  display: flex;
+}
+
+.location-btn {
+  background-color: #ebf5f1;
+  color: #389d74;
+  font-size: 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #cde7dc;
+  }
+  &:active {
+    background-color: #389d74;
+    color: white;
+  }
+}
+
+.write-btn {
+  background-color: #389d74;
+}
+
+.restaurant-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.photo {
+  width: 344px;
+  height: 196px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-photo {
+  display: flex;
+  width: 344px;
+  height: 196px;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  p {
+    color: gray;
+    margin: 0;
+  }
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  margin-top: 14px;
+}
+
+.location {
+  color: #389d74;
+}
+
+.place {
+  color: #7a7a7a;
+}
+
+.title {
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 4px 0px;
+}
+
+.main-dish {
+  color: #7a7a7a;
+}
+
+.like {
+  padding: 0px 0px;
+  margin-top: 8px;
+  background-color: white;
+  height: fit-content;
+}
+
+.star-img {
+  margin-top: 8px;
+}

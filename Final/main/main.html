@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='main.css') }}"
+    />
+    <style></style>
+  </head>
+  <body>
+    <nav class="navigation">
+      <div>LOGO</div>
+      <button onclick="redirectToPage_mypage()">마이페이지</button>
+    </nav>
+
+    <div class="wrapper">
+      <div class="contents">
+        <div class="place-title">
+          <h1 class="place-tex">야구장</h1>
+          <h1 class="food-text">먹거리</h1>
+        </div>
+
+        <nav class="place-navigation">
+          <ul class="place-menu">
+            <a class="location-btn" href="/">전체</a>
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '잠실') }}"
+              >잠실</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '고척') }}"
+              >고척</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '문학') }}"
+              >문학</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '수원') }}"
+              >수원</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '대전') }}"
+              >대전</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '광주') }}"
+              >광주</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '대구') }}"
+              >대구</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '사직') }}"
+              >사직</a
+            >
+            <a
+              class="location-btn"
+              href="{{url_for('goToLocation', location = '창원') }}"
+              >창원</a
+            >
+          </ul>
+          <ul>
+            <button onclick="redirectToPage_write()" class="write-btn">
+              추가하기
+            </button>
+          </ul>
+        </nav>
+
+        <div class="restaurant-cards">
+          {% for posts in post %}
+          <div class="restaurant">
+            {% if posts.image_exist %}
+            <div class="photo">
+              <img src="../static/{{posts.post_id}}.jpeg" class="thumbnail" />
+            </div>
+            {% else %}
+            <div class="no-photo"><p>NO IMAGE</p></div>
+            {% endif %}
+            <div class="info-container">
+              <div class="info">
+                <span class="location">{{posts.location}}</span
+                ><span class="place"> • {{posts.place}}</span>
+                <div class="title">{{posts.title}}</div>
+                <div class="main-dish">{{posts.main_dish}}</div>
+              </div>
+              <form
+                action="{{ url_for('likeAction',post_id = posts.post_id)}}"
+                method="post"
+              >
+                {% if posts.like_count %}
+                <input
+                  type="submit"
+                  value=""
+                  style="background-image: url(../static/ic_star_filled.png)"
+                />
+                {% else %}
+                <input
+                  type="submit"
+                  value=""
+                  style="background-image: url(../static/ic_star_unfilled.png)"
+                />
+                {% endif %}
+              </form>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <br />
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+  </body>
+</html>
