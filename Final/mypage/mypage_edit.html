@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물 수정</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css') }}">
+</head>
+<body>
+    <h1>게시물 수정</h1>
+    <form action="{{ url_for('edit_post', post_id=post.post_id) }}" method="post">
+        <div>
+            <label for="title">제목:</label>
+            <input type="text" id="title" name="title" value="{{ post.title }}" required>
+        </div>
+        <div>
+            <label for="location">위치:</label>
+            <input type="text" id="location" name="location" value="{{ post.location }}" required>
+        </div>
+        <div>
+            <label for="place">장소:</label>
+            <input type="text" id="place" name="place" value="{{ post.place }}" required>
+        </div>
+        <div>
+            <label for="main_dish">주요 음식:</label>
+            <input type="text" id="main_dish" name="main_dish" value="{{ post.main_dish }}" required>
+        </div>
+        <div>
+            <label for="content">내용:</label>
+            <textarea id="content" name="content" required>{{ post.content }}</textarea>
+        </div>
+        <button type="submit">수정</button>
+    </form>
+</body>
+</html>

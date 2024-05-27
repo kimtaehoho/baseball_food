@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mypage</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mypage.css') }}">
+</head>
+<body>
+    <nav class="navigation">
+        <div>LOGO</div>
+    </nav>
+
+    <div class="wrapper">
+        <div class="contents">
+            <div class="place-title">
+                <h1 class="place-text">야구장 <span class="food-text">먹거리</span></h1>
+            </div>
+
+            <h2>내가 추천한 <span class="food-text">먹거리</span></h2>
+            <nav class="place-navigation">
+                <ul class="place-menu" id="recommended-tabs">
+                    <li class="tab location-btn" onclick="showTab('recommended', 'all')">전체</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '잠실')">잠실</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '고척')">고척</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '문학')">문학</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '수원')">수원</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '대전')">대전</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '광주')">광주</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '대구')">대구</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '사직')">사직</li>
+                    <li class="tab location-btn" onclick="showTab('recommended', '창원')">창원</li>
+                </ul>
+            </nav>
+
+            <div id="posts-container-recommended">
+                <!-- 추천한 포스트 목록이 여기에 동적으로 추가됩니다 -->
+            </div>
+
+            <h2>내가 즐겨찾는 <span class="food-text">먹거리</span></h2>
+            <nav class="place-navigation">
+                <ul class="place-menu" id="liked-tabs">
+                    <li class="tab location-btn" onclick="showTab('liked', 'all')">전체</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '잠실')">잠실</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '고척')">고척</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '문학')">문학</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '수원')">수원</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '대전')">대전</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '광주')">광주</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '대구')">대구</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '사직')">사직</li>
+                    <li class="tab location-btn" onclick="showTab('liked', '창원')">창원</li>
+                </ul>
+            </nav>
+
+            <div id="posts-container-liked">
+                <!-- 즐겨찾는 포스트 목록이 여기에 동적으로 추가됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("/mypage")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayPosts(data.my_posts, 'recommended');
+                        displayPosts(data.liked_posts, 'liked');
+                    } else {
+                        alert("데이터를 가져오는 데 실패했습니다.");
+                    }
+                });
+        });
+
+        function displayPosts(posts, type) {
+            const locations = ['all', '잠실', '고척', '문학', '수원', '대전', '광주', '대구', '사직', '창원'];
+            const containerId = type === 'recommended' ? 'posts-container-recommended' : 'posts-container-liked';
+            const postsContainer = document.getElementById(containerId);
+
+            locations.forEach(location => {
+                const postContent = document.createElement("div");
+                postContent.className = `tab-content ${type}-${location}`;
+
+                posts.filter(post => location === 'all' || post.location === location)
+                    .forEach(post => {
+                        const postDiv = createPostDiv(post, type);
+                        postContent.appendChild(postDiv);
+                    });
+
+                postsContainer.appendChild(postContent);
+            });
+
+            showTab(type, 'all');
+        }
+
+
+        function createPostDiv(post, type) {
+            const postDiv = document.createElement("div");
+            postDiv.className = "post";
+            postDiv.innerHTML = `
+                <div class="photo">
+                    ${post.image_exist === 1 ? `<img src="../static/${post.post_id}.jpeg" class="thumbnail">` : '<div class="no-photo"><p>NO IMAGE</p></div>'}
+                </div>
+                <div class="post-content">
+                    <p class="place">${post.place}</p>
+                    <p class="title">${post.title}</p>
+                    <p class="main-dish">${post.main_dish}</p>
+                    ${type === 'liked' ? '' : `
+                        <div class="button-container">
+                            <button class="edit-btn" onclick="location.href='/edit_post/${post.post_id}'">수정</button>
+                            <button class="delete-btn" onclick="deletePost(${post.post_id})">삭제</button>
+                        </div>
+                    `}
+                </div>
+            `;
+
+            return postDiv;
+        }
+
+        function showTab(type, tabName) {
+            const allTabs = document.querySelectorAll(`.tab-content.${type}-all, .tab-content.${type}-잠실, .tab-content.${type}-고척, .tab-content.${type}-문학, .tab-content.${type}-수원, .tab-content.${type}-대전, .tab-content.${type}-광주, .tab-content.${type}-대구, .tab-content.${type}-사직, .tab-content.${type}-창원`);
+            allTabs.forEach(tab => tab.style.display = "none");
+
+            const selectedTab = document.querySelectorAll(`.tab-content.${type}-${tabName}`);
+            selectedTab.forEach(tab => tab.style.display = "flex");
+
+            const tabButtons = document.querySelectorAll(`#${type}-tabs .tab`);
+            tabButtons.forEach(button => button.classList.remove("active"));
+
+            const activeButton = document.querySelector(`#${type}-tabs .tab[onclick="showTab('${type}', '${tabName}')"]`);
+            if (activeButton) {
+                activeButton.classList.add("active");
+            }
+        }
+
+        function deletePost(postId) {
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                fetch(`/delete_post/${postId}`, {
+                    method: "POST"
+                }).then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          alert("게시물이 삭제되었습니다.");
+                          location.reload();
+                      } else {
+                          alert("게시물 삭제에 실패했습니다.");
+                      }
+                  });
+            }
+        }
+    </script>
+</body>
+</html>
